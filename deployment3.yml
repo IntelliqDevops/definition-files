@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deployment
+  namespace: test-ns
+  labels:
+    type: cms
+    author: intelliqit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     type: cms
+  template:
+    metadata:
+      name: ghsot-pod
+      labels:
+        type: cms
+    spec:
+      containers:
+        - name:  ghostapp
+          image: ghost
+          ports:
+           - containerPort: 2368
+             hostPort: 9090
+          env:
+            - name: NODE_ENV
+              value: development
+... 
+
+
+
+
